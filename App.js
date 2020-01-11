@@ -1,5 +1,5 @@
 import React,{ useState } from 'react';
-import { StyleSheet, Text, View, FlatList } from 'react-native';
+import { StyleSheet, Text, View, FlatList,Alert } from 'react-native';
 import Header from './components/header.js';
 import ToDoItem from './components/toDoItem.js';
 import AddToDo from './components/addToDo.js';
@@ -16,12 +16,18 @@ export default function App() {
     })
   }
   const submitHandler = (text) => {
-    setTodos((prevToDos)=>{
-      return [
-        { text:text, key: Math.random().toString() },
-        ...prevToDos
-      ]
-    })
+    if(text.length > 3 ){
+      setTodos((prevToDos)=>{
+        return [
+          { text:text, key: Math.random().toString() },
+          ...prevToDos
+        ]
+      });
+    }else{
+      Alert.alert('OOPS!','toDos',[
+        {text:'OK',onPress:()=>console.log('alert Closed')}
+      ]);
+    }
   }
 
 
