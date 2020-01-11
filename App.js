@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, FlatList, Alert, TouchableWithoutFeedback, Keyb
 import Header from './components/header.js';
 import ToDoItem from './components/toDoItem.js';
 import AddToDo from './components/addToDo.js';
+import Sandbox from './components/sanBox.js';
 export default function App() {
   const [todos, setTodos] = useState([
     { text: 'buy coffee', key: '1' },
@@ -32,22 +33,26 @@ export default function App() {
 
 
   return (
+    //<Sandbox/>
     <TouchableWithoutFeedback onPress={() => {
       console.log("Dismissed ketboard");
+      Keyboard.dismiss()
     }}>
       <View style={styles.container}>
         {/* header */}
         <Header />
-        <View style={styles.content}></View>
-        {/* to form */}
-        <AddToDo submitHandler={submitHandler} />
-        <View style={styles.list}></View>
-        <FlatList
-          data={todos}
-          renderItem={({ item }) => (
-            <ToDoItem item={item} pressHandler={pressHandler} />
-          )}
-        />
+        <View style={styles.content}>
+          {/* to form */}
+          <AddToDo submitHandler={submitHandler} />
+          <View style={styles.list}>
+            <FlatList
+              data={todos}
+              renderItem={({ item }) => (
+                <ToDoItem item={item} pressHandler={pressHandler} />
+              )}
+            />
+          </View>
+        </View>
       </View>
     </TouchableWithoutFeedback>
   );
@@ -57,13 +62,14 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    alignItems: 'stretch',
-    justifyContent: 'center',
   },
   content: {
     padding: 40,
+    //backgroundColor: 'pink',
+    flex: 1
   },
   list: {
     marginTop: 20,
+    //backgroundColor: 'yellow'
   }
 });
