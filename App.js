@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, View, FlatList, Alert, TouchableWithoutFeedback, Keyboard } from 'react-native';
+import { MaterialIcons } from '@expo/vector-icons';
 import Header from './components/header.js';
 import ToDoItem from './components/toDoItem.js';
 import AddToDo from './components/addToDo.js';
@@ -25,8 +26,8 @@ export default function App() {
         ]
       });
     } else {
-      Alert.alert('OOPS!', 'toDos', [
-        { text: 'OK', onPress: () => console.log('alert Closed') }
+      Alert.alert('Notification', 'You must input greater than or equal to 3', [
+        { text: 'Yes', onPress: () => console.log('alert Closed') }
       ]);
     }
   }
